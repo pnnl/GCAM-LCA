@@ -1,0 +1,109 @@
+<queries>
+    <aQuery>
+		<region name="USA"/>
+            <supplyDemandQuery title="inputs by tech">
+                <axis1 name="input">input</axis1>
+                <axis2 name="Year">demand-physical[@vintage]</axis2>
+                <xPath buildList="true" dataName="input" group="false" sumAll="false">*[@type='sector']/*[@type='subsector']/*[@type='technology']/*[@type='input']/demand-physical/node()</xPath>
+                <comments/>
+            </supplyDemandQuery>
+    </aQuery>
+      	<aQuery>
+		<region name="USA"/>
+            <supplyDemandQuery title="outputs by tech">
+                <axis1 name="technology">technology[@name]</axis1>
+                <axis2 name="Year">physical-output[@vintage]</axis2>
+                <xPath buildList="true" dataName="output" group="false" sumAll="false">*[@type='sector']/*[@type='subsector']/*[@type='technology']/*[@type='output']/physical-output/node()</xPath>
+                <comments/>
+            </supplyDemandQuery>
+      </aQuery>
+      <aQuery>
+		<region name="USA"/>
+            <supplyDemandQuery title="prices by sector">
+                <axis1 name="sector">sector</axis1>
+                <axis2 name="Year">cost</axis2>
+                <xPath buildList="true" dataName="Price" group="false" sumAll="false">*[@type = 'sector']/cost/text()</xPath>
+                <comments/>
+            </supplyDemandQuery>
+      </aQuery>
+      <aQuery>
+		<region name="USA"/>
+            <supplyDemandQuery title="costs by tech">
+                <axis1 name="technology">technology</axis1>
+                <axis2 name="Year">technology</axis2>
+                <xPath buildList="true" dataName="cost" group="false" sumAll="false">*[@type='sector' and (local-name()!='AgSupplySector')]/*[@type = 'subsector']/*[@type = 'technology']/cost/text()</xPath>
+                <comments>Excludes AgProductionTechnology costs, where data written out are no meaningful</comments>
+            </supplyDemandQuery>
+      </aQuery>
+      <aQuery>
+		<region name="USA"/>
+            <emissionsQueryBuilder title="CO2 sequestration by tech">
+                <axis1 name="subsector">subsector</axis1>
+                <axis2 name="Year">emissions-sequestered</axis2>
+                <xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[@type = 'sector' ]/*[@type='subsector']/*[@type='technology']//
+            CO2/emissions-sequestered/node()</xPath>
+                <comments/>
+            </emissionsQueryBuilder>
+      </aQuery>
+      	<aQuery>
+		<region name="USA"/>
+            <emissionsQueryBuilder title="NonCO2 GHG emissions by tech">
+                <axis1 name="GHG">GHG</axis1>
+                <axis2 name="Year">emissions</axis2>
+                <xPath buildList="true" dataName="emissions" group="false" sumAll="false">*[@type = 'sector']/*[@type = 'subsector']/*[@type = 'technology']/
+            *[@type = 'GHG' and (@name='CH4' or @name='N2O' or @name='N2O_AGR' or @name='H2')]/emissions/node()</xPath>
+                <comments/>
+            </emissionsQueryBuilder>
+          </aQuery>
+      <aQuery>
+		<region name="USA"/>
+            <marketQuery title="CO2 prices">
+    			<axis1 name="market">market</axis1>
+    			<axis2 name="Year">market</axis2>
+    			<xPath buildList="true" dataName="price" group="false" sumAll="false">Marketplace/market[true() and contains(@name,'CO2')]/price/node()</xPath>
+    			<comments/>
+			</marketQuery>
+      </aQuery>
+    <aQuery>
+		<region name="USA"/>
+		<region name="Canada"/>		
+		<region name="Africa_Eastern"/>		
+		<region name="Africa_Northern"/>		
+		<region name="Africa_Southern"/>
+		<region name="Africa_Western"/>
+		<region name="Japan"/>
+		<region name="South Korea"/>
+		<region name="China"/>
+		<region name="India"/>
+		<region name="Brazil"/>
+		<region name="Central America and Caribbean"/>
+		<region name="Central Asia"/>
+		<region name="EU-12"/>	
+		<region name="EU-15"/>
+		<region name="Europe_Eastern"/>
+		<region name="Europe_Non_EU"/>
+		<region name="European Free Trade Association"/>
+		<region name="Indonesia"/>
+		<region name="Mexico"/>
+		<region name="Middle East"/>
+		<region name="Pakistan"/>
+		<region name="Russia"/>
+		<region name="South Africa"/>
+		<region name="South America_Northern"/>
+		<region name="South America_Southern"/>
+		<region name="South Asia"/>
+		<region name="Southeast Asia"/>
+		<region name="Taiwan"/>
+		<region name="Argentina"/>
+		<region name="Colombia"/>
+		<region name="Australia_NZ"/>
+			<query title="LUC emissions by region">
+			<axis1 name="region">region</axis1>
+                <axis2 name="Year">land-use-change-emission[@year]</axis2>
+                <xPath buildList="true" dataName="land-use-change-emission" group="false" sumAll="true">/LandNode[@name='root' or @type='LandNode' (:collapse:)]//
+                    LandLeaf[true() or @type='LandLeaf' (: collapse :)]/land-carbon-densities/
+                land-use-change-emission[@year&gt;2015 and @year&lt;2055]/text()</xPath>
+                <comments/>
+			</query>
+    </aQuery>
+</queries>
