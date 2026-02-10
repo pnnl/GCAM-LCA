@@ -13,3 +13,5 @@ H2 MHDV,onsite production,electrolysis,hydrogen onsite electrolysis,hydrogen,0,
 H2 MHDV,onsite production,natural gas steam reforming,hydrogen onsite smr,hydrogen,0,
 LH2,H2 delivery,H2 pipeline,liquefied hydrogen,liquefied hydrogen,0,
 LNG,LNG,LNG,LNG,LNG,52.1,
+methanol,bio-methanol,bio-methanol,bio-methanol,bio-methanol,0,methanol
+methanol,e-methanol,e-methanol,e-methanol,e-methanol,0,
